@@ -21,7 +21,7 @@ class Player:
             self.x -= speed
 
     def draw(self):
-        pygame.draw.circle(self.game.screen, (0, 0, 0), [self.x, self.y], 5)
+        pygame.draw.rect(self.game.screen, (0, 0, 0), [self.x, self.y, 32, 32])
 
     def update(self):
         self.movement()
