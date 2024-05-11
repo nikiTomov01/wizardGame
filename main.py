@@ -1,25 +1,32 @@
 import pygame
 import sys
 from settings import *
-from pytmx.util_pygame import load_pygame
+from player import Player
+from level import Level
 
 class Game:
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode(RES)
         self.clock = pygame.time.Clock()
-        self.tmx_data = load_pygame("./map/map.tmx") # map thingy ?
+        self.delta_time = 1
+        self.new_game()
 
     def new_game(self):
-        pass
+        self.player = Player(self)
+        self.level = Level(self)
 
     def update(self):
+        self.player.update()
         pygame.display.flip()
-        self.clock.tick(FPS)
+        self.delta_time = self.clock.tick(FPS)
         pygame.display.set_caption(f'{self.clock.get_fps() :.1f}')
 
     def draw(self):
         self.screen.fill((255, 255, 255))
+        #draw level first then player
+        self.level.draw()
+        self.player.draw()
         
     def check_events(self):
         for event in pygame.event.get():
