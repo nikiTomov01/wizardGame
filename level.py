@@ -25,6 +25,7 @@ class Level:
                     pos = (x * 32, y * 32 - (77 - 32))
                     Tile(pos = pos, surf = surf, groups = self.sprite_group)
 
+    # checks for player direction and adds world offset
     def camera_movement(self):
         if self.game.player.direction.x < 0:
             self.world_shift_x = 4
@@ -40,14 +41,11 @@ class Level:
         else:
             self.world_shift_y = 0
 
-        print(self.game.player.direction)
-
-
     def draw(self):
         self.sprite_group.draw(self.game.screen)
 
     # used for camera
     def update(self):
-        for sprite in self.sprite_group:
+        for sprite in self.sprite_group: #loops through sprites in world tile group and offsets them based on player direction
             sprite.update(self.world_shift_x, self.world_shift_y)
         self.camera_movement()
