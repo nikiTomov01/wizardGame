@@ -1,5 +1,5 @@
 # Game settings
-RES = (800, 600)
+RES = (1280, 768)
 FPS = 60
 
 #Player settings

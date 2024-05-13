@@ -12,22 +12,22 @@ class Player:
         self.attack_list = []
         
     def movement(self):
-        #speed = SPEED * self.game.delta_time
+        speed = SPEED * self.game.delta_time
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
-            #self.y -= speed
+            self.y -= speed
             self.direction.y = -1
         elif keys[pygame.K_s]:
-            #self.y += speed
+            self.y += speed
             self.direction.y = 1
         else:
             self.direction.y = 0
         if keys[pygame.K_d]:
-            #self.x += speed
+            self.x += speed
             self.direction.x = 1
         elif keys[pygame.K_a]:
-            #self.x -= speed
+            self.x -= speed
             self.direction.x = -1
         else:
             self.direction.x = 0
