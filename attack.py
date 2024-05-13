@@ -18,6 +18,7 @@ class Attack(pygame.sprite.Sprite):
         angle = math.degrees(math.atan2(-self.dir[0], -self.dir[1]))
         self.image = pygame.transform.rotate(self.image, angle)
 
+    # if camera simulation is removed fireballs look normal and not stuck to screen
     def draw(self):
         attack_rect = self.image.get_rect(center = self.pos)
         self.game.screen.blit(self.image, attack_rect)
