@@ -9,7 +9,7 @@ class Player:
         self.y = 600 / 2
         self.direction = pygame.math.Vector2(0, 0)
         self.player_image = pygame.image.load("./character/pixelFlameChar.png").convert_alpha()
-        self.attack_list = []
+        self.attack_group = pygame.sprite.Group()
         
     def movement(self):
         speed = SPEED * self.game.delta_time
@@ -33,18 +33,17 @@ class Player:
             self.direction.x = 0
 
     def attack(self):
-        self.attack_list.append(Attack(self.game, self.x, self.y))
+        Attack(self.game, self.x, self.y, self.attack_group)
 
 
     def draw(self):
         #pygame.draw.rect(self.game.screen, (0, 0, 0), [self.x, self.y, 32, 32])
         player_rect = self.player_image.get_rect(center = (self.x, self.y))
         self.game.screen.blit(self.player_image, player_rect)
-        for attack in self.attack_list:
-            attack.draw()
+        self.attack_group.draw(self.game.screen)
 
 
     def update(self):
         self.movement()
-        for attack in self.attack_list:
+        for attack in self.attack_group.sprites():
             attack.update()
