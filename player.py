@@ -33,8 +33,10 @@ class Player:
             self.direction.x = 0
 
     def attack(self):
-        Attack(self.game, self.x, self.y, self.attack_group)
+        Attack(self.game, self.x, self.y, pygame.mouse.get_pos(), "player", self.attack_group)
 
+    def take_damage(self):
+        print("damage taken")
 
     def draw(self):
         #pygame.draw.rect(self.game.screen, (0, 0, 0), [self.x, self.y, 32, 32])

@@ -53,6 +53,8 @@ class Level:
 
     def draw(self):
         self.bg_sprite_group.draw(self.game.screen)
+        #uncomment bottom line and remove for loop when a enemy image has been added
+        #self.enemy_list.draw(self.game.screen)
         for enemy in self.enemy_list.sprites():
             enemy.draw()
 
@@ -60,4 +62,6 @@ class Level:
     def update(self):
         for sprite in self.bg_sprite_group: #loops through sprites in world tile group and offsets them based on player direction
             sprite.update(self.world_shift_x, self.world_shift_y)
+        for enemy in self.enemy_list.sprites():
+            enemy.update()
         #self.camera_movement()
