@@ -1,8 +1,9 @@
 import pygame
 import math
 
-class Enemy:
-    def __init__(self, game, x, y):
+class Enemy(pygame.sprite.Sprite):
+    def __init__(self, game, x, y, groups):
+        super().__init__(groups)
         self.game = game
         self.x = x
         self.y = y

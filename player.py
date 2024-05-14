@@ -5,8 +5,8 @@ from attack import Attack
 class Player:
     def __init__(self, game):
         self.game = game
-        self.x = 800 / 2
-        self.y = 600 / 2
+        self.x = RES[0] / 2
+        self.y = RES[1] / 2
         self.direction = pygame.math.Vector2(0, 0)
         self.player_image = pygame.image.load("./character/pixelFlameChar.png").convert_alpha()
         self.attack_group = pygame.sprite.Group()
@@ -47,3 +47,4 @@ class Player:
         self.movement()
         for attack in self.attack_group.sprites():
             attack.update()
+            #print(attack.rect.x, attack.rect.y)
