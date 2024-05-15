@@ -2,7 +2,7 @@ import pygame
 import math
 
 class Attack(pygame.sprite.Sprite):
-    def __init__(self, game, x, y, end_pos, attacker, groups):
+    def __init__(self, game, x, y, end_pos, attacker, dmg, groups):
         super().__init__(groups)
         self.game = game
         self.pos = (x - 32, y - 32)
@@ -11,6 +11,10 @@ class Attack(pygame.sprite.Sprite):
         self.speed = 5
         self.rect = self.image.get_rect(topleft = self.pos)
 
+        #stats
+        self.attack_dmg = dmg
+
+        #movement calculations
         #mx, my = pygame.mouse.get_pos()
         self.dir = (end_pos[0] - x, end_pos[1] - y)
         length = math.hypot(*self.dir)
@@ -38,7 +42,7 @@ class Attack(pygame.sprite.Sprite):
         if self.attacker == "enemy":
             player_rect = self.game.player.player_image.get_rect(center = (self.game.player.x, self.game.player.y))
             if self.rect.colliderect(player_rect):
-                self.game.player.take_damage()
+                self.game.player.take_damage(self.attack_dmg)
 
     def update(self):
         self.pos = (self.pos[0] + self.dir[0] * self.speed, self.pos[1] + self.dir[1] * self.speed)

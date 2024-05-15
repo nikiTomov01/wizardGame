@@ -11,6 +11,10 @@ class Player:
         self.player_image = pygame.image.load("./character/pixelFlameChar.png").convert_alpha()
         self.attack_group = pygame.sprite.Group() # attack sprites
         self.i_frame = pygame.time.get_ticks()
+
+        #stats
+        self.hp = 10
+        self.base_dmg = 5
         
     def movement(self):
         speed = SPEED * self.game.delta_time
@@ -34,11 +38,13 @@ class Player:
             self.direction.x = 0
 
     def attack(self):
-        Attack(self.game, self.x, self.y, pygame.mouse.get_pos(), "player", self.attack_group)
+        Attack(self.game, self.x, self.y, pygame.mouse.get_pos(), "player", self.base_dmg, self.attack_group)
 
-    def take_damage(self):
+    def take_damage(self, enemy_dmg):
         if pygame.time.get_ticks() - self.i_frame >= 1000:
-            print("damage taken")
+            print("damage taken:", enemy_dmg)
+            self.hp -= enemy_dmg
+            print("hp left: ", self.hp)
             self.i_frame = pygame.time.get_ticks()
 
     def draw(self):

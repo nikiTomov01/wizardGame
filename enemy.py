@@ -16,6 +16,9 @@ class Enemy(pygame.sprite.Sprite):
         self.tempEnemy.fill((0,0,0))
         self.tempRect = self.tempEnemy.get_rect(topleft = (self.x, self.y))
 
+        #stats
+        self.base_dmg = 2
+
         #attack stuff
         self.attack_group = pygame.sprite.Group() # enemy attack sprites
         self.attack_timer = pygame.time.get_ticks()
@@ -26,8 +29,8 @@ class Enemy(pygame.sprite.Sprite):
 
     def attack_player(self):
         player_pos = (self.game.player.x, self.game.player.y)
-        Attack(self.game, self.x, self.y, player_pos, "enemy", self.attack_group) 
-        self.attack_timer = pygame.time.get_ticks()        
+        Attack(self.game, self.x, self.y, player_pos, "enemy", self.base_dmg, self.attack_group) 
+        self.attack_timer = pygame.time.get_ticks()
 
     def update(self):
         # enemy attack speed (currently shots every 1.5 second)

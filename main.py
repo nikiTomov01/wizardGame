@@ -27,7 +27,8 @@ class Game:
         self.screen.fill((255, 255, 255))
         #draw level first then player
         self.level.draw()
-        self.player.draw()
+        if self.player.hp > 0:
+            self.player.draw()
         
     def check_events(self):
         for event in pygame.event.get():
