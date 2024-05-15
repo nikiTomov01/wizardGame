@@ -15,9 +15,11 @@ class Enemy(pygame.sprite.Sprite):
         self.tempEnemy = pygame.Surface((32, 32)).convert_alpha()
         self.tempEnemy.fill((0,0,0))
         self.tempRect = self.tempEnemy.get_rect(topleft = (self.x, self.y))
+        self.i_frame = pygame.time.get_ticks()
 
         #stats
         self.base_dmg = 2
+        self.hp = 7
 
         #attack stuff
         self.attack_group = pygame.sprite.Group() # enemy attack sprites
@@ -26,6 +28,11 @@ class Enemy(pygame.sprite.Sprite):
     def draw(self):
         self.game.screen.blit(self.tempEnemy, self.tempRect)
         self.attack_group.draw(self.game.screen)
+
+    def take_dmg(self, dmg):
+        if pygame.time.get_ticks() - self.i_frame >= 1000:
+            self.hp -= dmg
+            self.i_frame = pygame.time.get_ticks()
 
     def attack_player(self):
         player_pos = (self.game.player.x, self.game.player.y)
