@@ -10,11 +10,15 @@ class Player:
         self.direction = pygame.math.Vector2(0, 0)
         self.player_image = pygame.image.load("./character/pixelFlameChar.png").convert_alpha()
         self.attack_group = pygame.sprite.Group() # attack sprites
-        self.i_frame = pygame.time.get_ticks()
+        self.i_frame = pygame.time.get_ticks() #used to give player damage immunity
+        self.attack_interval = pygame.time.get_ticks() #used to check time between last attack
+        self.attack_speed = 500 #sets the needed amount of time to pass before attacking again
 
         #stats
         self.hp = 10
         self.base_dmg = 5
+        self.lvl = 1
+        self.exp = 0
         
     def movement(self):
         speed = SPEED * self.game.delta_time
@@ -56,6 +60,11 @@ class Player:
 
     def update(self):
         self.movement()
+        mousePress = pygame.mouse.get_pressed()
+        if mousePress[0] == True:
+            if pygame.time.get_ticks() - self.attack_interval >= self.attack_speed:
+                self.attack()
+                self.attack_interval = pygame.time.get_ticks()
         for attack in self.attack_group.sprites():
             attack.update()
             #print(attack.rect.x, attack.rect.y)
