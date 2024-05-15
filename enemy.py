@@ -17,7 +17,7 @@ class Enemy(pygame.sprite.Sprite):
         self.tempRect = self.tempEnemy.get_rect(topleft = (self.x, self.y))
 
         #attack stuff
-        self.attack_group = pygame.sprite.Group()
+        self.attack_group = pygame.sprite.Group() # enemy attack sprites
         self.attack_timer = pygame.time.get_ticks()
 
     def draw(self):
