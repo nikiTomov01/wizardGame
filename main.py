@@ -30,6 +30,11 @@ class Game:
         self.level.draw()
         if self.player.hp > 0:
             self.player.draw()
+        if self.player.leveled_up == True:
+            for card in self.player.card_list:
+                if card.draw():
+                    self.player.exp = 0
+                    self.player.leveled_up = False
         
     def check_events(self):
         for event in pygame.event.get():

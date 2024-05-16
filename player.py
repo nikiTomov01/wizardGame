@@ -1,6 +1,7 @@
 import pygame
 from settings import *
 from attack import Attack
+from uiCard import UICard
 
 class Player:
     def __init__(self, game):
@@ -16,9 +17,14 @@ class Player:
 
         #stats
         self.hp = 10
-        self.base_dmg = 5
+        self.base_dmg = 10
         self.lvl = 1
         self.exp = 0
+        self.leveled_up = False
+
+        #level up stuff
+        self.card_list = []
+        self.temp_card_image = pygame.image.load("./ui/dmg-up-card.png")
         
     def movement(self):
         speed = SPEED * self.game.delta_time
@@ -56,11 +62,20 @@ class Player:
         player_rect = self.player_image.get_rect(center = (self.x, self.y))
         self.game.screen.blit(self.player_image, player_rect)
         self.attack_group.draw(self.game.screen)
+        self.draw_stats(f"HP: {self.hp}", self.game.font, TEXT_COL, 10, 5)
+        self.draw_stats(f"LVL: {self.lvl}", self.game.font, TEXT_COL, 120, 5)
+        self.draw_stats(f"EXP: {self.exp}", self.game.font, TEXT_COL, 230, 5)
 
     def draw_stats(self, text, font, text_col, x, y):
         img = font.render(text, True, text_col)
         self.game.screen.blit(img, (x, y))
 
+    def level_up(self):
+        if self.leveled_up == False:
+            self.lvl += 1
+            self.card_list.append(UICard(self.game, 50, 100, self.temp_card_image, "dmg"))
+            self.card_list.append(UICard(self.game, 500, 100, self.temp_card_image, "hp"))
+            self.card_list.append(UICard(self.game, 950, 100, self.temp_card_image, "as"))
 
     def update(self):
         self.movement()
@@ -71,6 +86,6 @@ class Player:
                 self.attack_interval = pygame.time.get_ticks()
         for attack in self.attack_group.sprites():
             attack.update()
-        self.draw_stats("HP: {hp}".format(hp = self.hp), self.game.font, TEXT_COL, 10, 5)
-        self.draw_stats("LVL: {lvl}".format(lvl = self.lvl), self.game.font, TEXT_COL, 120, 5)
-        self.draw_stats("EXP: {exp}".format(exp = self.exp), self.game.font, TEXT_COL, 230, 5)
+        if self.exp == 100:
+            self.level_up()
+            self.leveled_up = True

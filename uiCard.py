@@ -1,11 +1,12 @@
 import pygame
 
 class UICard:
-    def __init__(self, game, x, y, image):
+    def __init__(self, game, x, y, image, cardFunc):
         self.game = game
         width = image.get_width()
         height = image.get_height()
         self.image = pygame.transform.scale(image, (int(width), int(height)))
+        self.cardFunc = cardFunc
         # different way for implement image and get_rect check enemy.py for shorthand way
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
@@ -29,7 +30,12 @@ class UICard:
         self.game.screen.blit(self.image, self.rect)
 
         if action == True:
-            del self
+            if self.cardFunc == "dmg":
+                self.game.player.base_dmg += 5
+            if self.cardFunc == "hp":
+                self.game.player.hp += 5
+            if self.cardFunc == "as":
+                self.game.player.attack_speed -= 250
 
         return action
         
