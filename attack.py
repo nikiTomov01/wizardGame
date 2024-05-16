@@ -39,8 +39,6 @@ class Attack(pygame.sprite.Sprite):
                 if self.rect.colliderect(enemy.rect):
                     self.kill()
                     enemy.take_dmg(self.attack_dmg)
-                    if enemy.hp <= 0:
-                        enemy.kill()
         if self.attacker == "enemy":
             player_rect = self.game.player.player_image.get_rect(center = (self.game.player.x, self.game.player.y))
             if self.rect.colliderect(player_rect):

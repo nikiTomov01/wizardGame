@@ -33,6 +33,8 @@ class Enemy(pygame.sprite.Sprite):
         if pygame.time.get_ticks() - self.i_frame >= 1000:
             self.hp -= dmg
             self.i_frame = pygame.time.get_ticks()
+            if self.hp <= 0:
+                self.kill()
             print(self.hp)
 
     def attack_player(self):

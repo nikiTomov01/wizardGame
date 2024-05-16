@@ -6,6 +6,7 @@ class UICard:
         width = image.get_width()
         height = image.get_height()
         self.image = pygame.transform.scale(image, (int(width), int(height)))
+        # different way for implement image and get_rect check enemy.py for shorthand way
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
         self.clicked = False
