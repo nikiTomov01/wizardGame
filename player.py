@@ -60,8 +60,8 @@ class Player:
 
     def update(self):
         self.movement()
-        mousePress = pygame.mouse.get_pressed()
-        if mousePress[0] == True:
+        mousePress = pygame.mouse.get_pressed() #gets pressed mouse keys
+        if mousePress[0] == True: #check if left mouse button is pressed
             if pygame.time.get_ticks() - self.attack_interval >= self.attack_speed:
                 self.attack()
                 self.attack_interval = pygame.time.get_ticks()
