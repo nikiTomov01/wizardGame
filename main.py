@@ -10,6 +10,7 @@ class Game:
         self.screen = pygame.display.set_mode(RES)
         self.clock = pygame.time.Clock()
         self.delta_time = 1
+        self.font = pygame.font.SysFont("arialblack", 20)
         self.new_game()
 
     def new_game(self):

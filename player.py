@@ -57,6 +57,10 @@ class Player:
         self.game.screen.blit(self.player_image, player_rect)
         self.attack_group.draw(self.game.screen)
 
+    def draw_stats(self, text, font, text_col, x, y):
+        img = font.render(text, True, text_col)
+        self.game.screen.blit(img, (x, y))
+
 
     def update(self):
         self.movement()
@@ -67,4 +71,6 @@ class Player:
                 self.attack_interval = pygame.time.get_ticks()
         for attack in self.attack_group.sprites():
             attack.update()
-            #print(attack.rect.x, attack.rect.y)
+        self.draw_stats("HP: {hp}".format(hp = self.hp), self.game.font, TEXT_COL, 10, 5)
+        self.draw_stats("LVL: {lvl}".format(lvl = self.lvl), self.game.font, TEXT_COL, 120, 5)
+        self.draw_stats("EXP: {exp}".format(exp = self.exp), self.game.font, TEXT_COL, 230, 5)
