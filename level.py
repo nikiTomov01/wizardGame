@@ -35,6 +35,7 @@ class Level:
         Enemy(self.game, rand_pos_x, rand_pos_y, self.enemy_list)
 
     def populate_level(self):
+        self.enemy_list.empty()
         for i in range(0, 5):
             self.spawn_enemy()
             
