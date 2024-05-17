@@ -20,7 +20,7 @@ class Enemy(pygame.sprite.Sprite):
         #stats
         self.base_dmg = 2
         self.hp = 7
-        self.lvl = 2
+        self.lvl = self.game.player.lvl
 
         #attack stuff
         self.attack_group = pygame.sprite.Group() # enemy attack sprites
@@ -36,7 +36,7 @@ class Enemy(pygame.sprite.Sprite):
             self.i_frame = pygame.time.get_ticks()
             if self.hp <= 0:
                 self.kill()
-                self.game.player.exp += self.lvl * 10
+                self.game.player.exp += 20
             print(self.hp)
 
     def attack_player(self):

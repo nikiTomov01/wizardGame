@@ -15,8 +15,7 @@ class Level:
         self.populate_sprite_group()
         self.world_shift_x = 0
         self.world_shift_y = 0
-        for i in range(0, 5):
-            self.spawn_enemy()
+        self.populate_level()
 
     def populate_sprite_group(self):
         #cycle through all layers
@@ -34,6 +33,10 @@ class Level:
         rand_pos_x = random.randrange(0, 800)
         rand_pos_y = random.randrange(0, 600)
         Enemy(self.game, rand_pos_x, rand_pos_y, self.enemy_list)
+
+    def populate_level(self):
+        for i in range(0, 5):
+            self.spawn_enemy()
             
     # checks for player direction and adds world offset
     def camera_movement(self):
