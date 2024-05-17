@@ -36,7 +36,7 @@ class Attack(pygame.sprite.Sprite):
         if self.attacker == "player":
             for enemy in self.game.level.enemy_list:
                 #print(enemy.rect.x, enemy.rect.y)
-                if self.rect.colliderect(enemy.rect):
+                if self.rect.colliderect(enemy.tempRect):
                     self.kill()
                     enemy.take_dmg(self.attack_dmg)
         if self.attacker == "enemy":
