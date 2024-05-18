@@ -30,12 +30,14 @@ class UICard:
         self.game.screen.blit(self.image, self.rect)
 
         if action == True:
-            if self.cardFunc == "dmg":
+            if self.cardFunc == "fire":
                 self.game.player.base_dmg += 5
-            if self.cardFunc == "hp":
+            if self.cardFunc == "earth":
                 self.game.player.hp += 5
-            if self.cardFunc == "as":
+            if self.cardFunc == "air":
                 self.game.player.attack_speed -= 250
+            if self.cardFunc == "water":
+                self.game.player.ms += 0.01
 
         return action
         

@@ -1,4 +1,5 @@
 import pygame
+import random
 from settings import *
 from attack import Attack
 from uiCard import UICard
@@ -14,12 +15,18 @@ class Player:
         self.i_frame = pygame.time.get_ticks() #used to give player damage immunity
         self.attack_interval = pygame.time.get_ticks() #used to check time between last attack
         self.attack_speed = 500 #sets the needed amount of time to pass before attacking again
-        self.available_elements = {1 : "fire", 2 : "water", 3 : "air", 4 : "earth"}
+        self.elem_dict = {0 : "fire", 1 : "water", 2 : "air", 3 : "earth"}
+        self.level_up_card_dict = {0 : pygame.image.load("./ui/fireUpCard.png"), 
+                                   1 : pygame.image.load("./ui/fireUpCard.png"),
+                                   2 : pygame.image.load("./ui/fireUpCard.png"),
+                                   3 : pygame.image.load("./ui/fireUpCard.png"),}
 
         #stats
         self.hp = 10
+        self.ms = SPEED
         self.element = "fire"
         self.base_dmg = 10
+        self.curr_element = self.elem_dict[0]
 
         #lvl stuff
         self.lvl = 1
@@ -31,7 +38,7 @@ class Player:
         self.temp_card_image = pygame.image.load("./ui/dmg-up-card.png")
         
     def movement(self):
-        speed = SPEED * self.game.delta_time
+        speed = self.ms * self.game.delta_time
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
@@ -77,9 +84,10 @@ class Player:
     def level_up(self):
         if self.leveled_up == False:
             self.lvl += 1
-            self.card_list.append(UICard(self.game, 50, 100, self.temp_card_image, "dmg"))
-            self.card_list.append(UICard(self.game, 500, 100, self.temp_card_image, "hp"))
-            self.card_list.append(UICard(self.game, 950, 100, self.temp_card_image, "as"))
+            selected_rand_elem_one = random.randrange(0, 4)
+            selected_rand_elem_two = random.randrange(0, 4)
+            self.card_list.append(UICard(self.game, 150, 100, self.level_up_card_dict[selected_rand_elem_one], self.elem_dict[selected_rand_elem_one]))
+            self.card_list.append(UICard(self.game, 850, 100, self.level_up_card_dict[selected_rand_elem_two], self.elem_dict[selected_rand_elem_two]))
 
     def update(self):
         self.movement()
