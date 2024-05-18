@@ -17,7 +17,7 @@ class Player:
         self.attack_speed = 500 #sets the needed amount of time to pass before attacking again
         self.elem_dict = {0 : "fire", 1 : "water", 2 : "air", 3 : "earth"}
         self.level_up_card_dict = {0 : pygame.image.load("./ui/fireUpCard.png"), 
-                                   1 : pygame.image.load("./ui/fireUpCard.png"),
+                                   1 : pygame.image.load("./ui/waterUpCard.png"),
                                    2 : pygame.image.load("./ui/fireUpCard.png"),
                                    3 : pygame.image.load("./ui/fireUpCard.png"),}
 
