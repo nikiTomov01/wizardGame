@@ -14,10 +14,14 @@ class Player:
         self.i_frame = pygame.time.get_ticks() #used to give player damage immunity
         self.attack_interval = pygame.time.get_ticks() #used to check time between last attack
         self.attack_speed = 500 #sets the needed amount of time to pass before attacking again
+        self.available_elements = {1 : "fire", 2 : "water", 3 : "air", 4 : "earth"}
 
         #stats
         self.hp = 10
+        self.element = "fire"
         self.base_dmg = 10
+
+        #lvl stuff
         self.lvl = 1
         self.exp = 0
         self.leveled_up = False
