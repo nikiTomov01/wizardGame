@@ -73,7 +73,7 @@ class Enemy(pygame.sprite.Sprite):
             self.space_count_y = 0
             self.turn_y = random.randrange(1, 100)
 
-
+    # checks if a specified interval has passed after last dmg check and reduces enemy.hp
     def take_dmg(self, dmg):
         if pygame.time.get_ticks() - self.i_frame >= 1000:
             self.hp -= dmg
@@ -91,8 +91,7 @@ class Enemy(pygame.sprite.Sprite):
     def update(self):
         # enemy attack speed (currently shots every 1.5 second)
         self.random_movement()
-        if self.attack_timer is not None:
-            if pygame.time.get_ticks() - self.attack_timer >= 1500:
-                self.attack_player()
+        if pygame.time.get_ticks() - self.attack_timer >= 1500: #attacks player when a specified time interval has passed
+            self.attack_player()
         for attack in self.attack_group.sprites():
             attack.update()

@@ -41,6 +41,7 @@ class Player:
         
     def movement(self):
         speed = self.ms * self.game.delta_time
+        player_rect = self.player_image.get_rect(center = (self.x, self.y))
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
@@ -59,6 +60,16 @@ class Player:
             self.direction.x = -1
         else:
             self.direction.x = 0
+
+        if player_rect.x <= 0:
+            self.x = 20
+        elif player_rect.x >= RES[0] - 32:
+            self.x = RES[0] - 36
+
+        if player_rect.y <= 0:
+            self.y = 20
+        elif player_rect.y >= RES[1] - 32:
+            self.y = RES[1] - 36
 
     def attack(self):
         Attack(self.game, self.x, self.y, pygame.mouse.get_pos(), "player", self.base_dmg, self.attack_group)
@@ -93,6 +104,7 @@ class Player:
             self.card_list.append(UICard(self.game, 150, 100, self.level_up_card_dict[selected_rand_elem_one], self.elem_dict[selected_rand_elem_one]))
             self.card_list.append(UICard(self.game, 850, 100, self.level_up_card_dict[selected_rand_elem_two], self.elem_dict[selected_rand_elem_two]))
 
+    #loops through the list containing amount of points in each element and sets the current element to the element with the most points
     def update_elem(self):
         nextElem = 0
         for i in range (4):
@@ -110,9 +122,9 @@ class Player:
             if pygame.time.get_ticks() - self.attack_interval >= self.attack_speed:
                 self.attack()
                 self.attack_interval = pygame.time.get_ticks()
-        for attack in self.attack_group.sprites():
+        for attack in self.attack_group.sprites(): # call update for each attack thrown by player
             attack.update()
-        if self.exp == 100:
+        if self.exp == 100: #maybe make this a better check for level up
             self.level_up()
             self.leveled_up = True
         #print(self.elems_rank)
