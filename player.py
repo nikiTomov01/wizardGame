@@ -28,6 +28,7 @@ class Player:
         self.element = "fire"
         self.base_dmg = 10
         self.curr_element = self.elem_dict[0]
+        self.curr_max_elem = self.elems_rank[0]
 
         #lvl stuff
         self.lvl = 1
@@ -94,11 +95,16 @@ class Player:
 
     def update_elem(self):
         nextElem = 0
-        for i in range (0, 4):
-            for j in range(1, 4):
-                if self.elems_rank[i] > self.elems_rank[j]:
-                    nextElem = i
-        self.curr_element = nextElem
+        for i in range (4):
+            #for j in range(4):
+                #print(self.elems_rank[i], " : ", self.elems_rank[j])
+                #if self.elems_rank[i] < self.elems_rank[j]:
+                    #nextElem = j
+            if (self.elems_rank[i] > self.curr_max_elem):
+                nextElem = i
+                self.curr_max_elem = self.elems_rank[i]
+            print("value to check is: ", self.elems_rank[i], " and current max is: ", self.curr_max_elem)
+        self.curr_element = self.elem_dict[nextElem]
                     
 
     def update(self):
@@ -113,4 +119,4 @@ class Player:
         if self.exp == 100:
             self.level_up()
             self.leveled_up = True
-        self.update_elem()
+        #print(self.elems_rank)

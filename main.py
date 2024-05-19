@@ -35,7 +35,7 @@ class Game:
                 if card.draw():
                     self.player.exp = 0
                     self.player.leveled_up = False
-                    self.level.populate_level() #at lvl 3 this calls 2 times and the game goes crazy pls find a fix :C
+                    self.level.populate_level()
         
     def check_events(self):
         for event in pygame.event.get():
