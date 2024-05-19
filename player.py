@@ -19,8 +19,12 @@ class Player:
         self.level_up_card_dict = {0 : pygame.image.load("./ui/fireUpCard.png"), 
                                    1 : pygame.image.load("./ui/waterUpCard.png"),
                                    2 : pygame.image.load("./ui/airUpCard.png"),
-                                   3 : pygame.image.load("./ui/earthUpCard.png"),}
+                                   3 : pygame.image.load("./ui/earthUpCard.png")}
         self.elems_rank = {0 : 0, 1 : 0, 2 : 0, 3 : 0}
+        self.attack_image_dict = {"fire": pygame.image.load("./character/fireBallPixel.png"),
+                                  "water": pygame.image.load("./character/fireBallPixel.png"),
+                                  "air": pygame.image.load("./character/fireBallPixel.png"),
+                                  "earth": pygame.image.load("./character/rockBallPixel.png")}
 
         #stats
         self.hp = 10
@@ -73,7 +77,7 @@ class Player:
             self.y = RES[1] - 36
 
     def attack(self):
-        Attack(self.game, self.x, self.y, pygame.mouse.get_pos(), "player", self.base_dmg, self.attack_group)
+        Attack(self.game, self.x, self.y, pygame.mouse.get_pos(), "player", self.attack_image_dict[self.curr_element] ,self.base_dmg, self.attack_group)
 
     def take_damage(self, enemy_dmg):
         if pygame.time.get_ticks() - self.i_frame >= 1000:
@@ -114,6 +118,7 @@ class Player:
             print("value to check is: ", self.elems_rank[i], " and current max is: ", self.curr_max_elem, " : nextElem = ", self.elem_dict[self.nextElem])
         self.curr_element = self.elem_dict[self.nextElem]
         print(self.elems_rank)
+        print("curr_element: ", self.curr_element)
                     
 
     def update(self):

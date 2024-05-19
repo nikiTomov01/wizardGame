@@ -85,7 +85,7 @@ class Enemy(pygame.sprite.Sprite):
 
     def attack_player(self):
         player_pos = (self.game.player.x, self.game.player.y)
-        Attack(self.game, self.tempRect.x, self.tempRect.y, player_pos, "enemy", self.base_dmg, self.attack_group) 
+        Attack(self.game, self.tempRect.x, self.tempRect.y, player_pos, "enemy", pygame.image.load("./character/fireBallPixel.png"), self.base_dmg, self.attack_group) 
         self.attack_timer = pygame.time.get_ticks()
 
     def update(self):

@@ -2,12 +2,12 @@ import pygame
 import math
 
 class Attack(pygame.sprite.Sprite):
-    def __init__(self, game, x, y, end_pos, attacker, dmg, groups):
+    def __init__(self, game, x, y, end_pos, attacker, attack_img, dmg, groups):
         super().__init__(groups)
         self.game = game
         self.pos = (x - 32, y - 32)
         self.attacker = attacker
-        self.image = pygame.image.load("./character/fireBallPixel.png").convert_alpha()
+        self.image = attack_img #pygame.image.load("./character/fireBallPixel.png").convert_alpha()
         self.speed = 5
         self.rect = self.image.get_rect(topleft = self.pos)
 
