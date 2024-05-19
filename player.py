@@ -18,7 +18,7 @@ class Player:
         self.elem_dict = {0 : "fire", 1 : "water", 2 : "air", 3 : "earth"}
         self.level_up_card_dict = {0 : pygame.image.load("./ui/fireUpCard.png"), 
                                    1 : pygame.image.load("./ui/waterUpCard.png"),
-                                   2 : pygame.image.load("./ui/fireUpCard.png"),
+                                   2 : pygame.image.load("./ui/airUpCard.png"),
                                    3 : pygame.image.load("./ui/earthUpCard.png"),}
 
         #stats
@@ -85,7 +85,7 @@ class Player:
         if self.leveled_up == False:
             self.lvl += 1
             self.card_list.clear()
-            selected_rand_elem_one = 3#random.randrange(0, 4)
+            selected_rand_elem_one = random.randrange(0, 4)
             selected_rand_elem_two = random.randrange(0, 4)
             self.card_list.append(UICard(self.game, 150, 100, self.level_up_card_dict[selected_rand_elem_one], self.elem_dict[selected_rand_elem_one]))
             self.card_list.append(UICard(self.game, 850, 100, self.level_up_card_dict[selected_rand_elem_two], self.elem_dict[selected_rand_elem_two]))
