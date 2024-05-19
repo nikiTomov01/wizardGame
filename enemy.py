@@ -51,7 +51,7 @@ class Enemy(pygame.sprite.Sprite):
             self.direction_x = 1  # turn right
             self.space_count_x = 0
             self.turn_x = random.randrange(1, 100)
-        elif (self.tempRect.x >= RES[0]):
+        elif (self.tempRect.x >= RES[0] - 32):
             self.direction_x = -1
             self.space_count_x = 0
             self.turn_x = random.randrange(1, 100)
@@ -68,7 +68,7 @@ class Enemy(pygame.sprite.Sprite):
             self.direction_y = 1
             self.space_count_y = 0
             self.turn_y = random.randrange(1, 100)
-        elif (self.tempRect.y >= RES[1]):
+        elif (self.tempRect.y >= RES[1] -32):
             self.direction_y = -1
             self.space_count_y = 0
             self.turn_y = random.randrange(1, 100)

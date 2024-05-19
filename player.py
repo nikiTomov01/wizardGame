@@ -27,13 +27,14 @@ class Player:
         self.ms = SPEED
         self.element = "fire"
         self.base_dmg = 10
-        self.curr_element = self.elem_dict[0]
-        self.curr_max_elem = self.elems_rank[0]
 
         #lvl stuff
         self.lvl = 1
         self.exp = 0
         self.leveled_up = False
+        self.curr_element = self.elem_dict[0]
+        self.curr_max_elem = self.elems_rank[0]
+        self.nextElem = 0
 
         #level up stuff
         self.card_list = []
@@ -89,7 +90,7 @@ class Player:
         self.draw_stats(f"HP: {self.hp}", self.game.font, TEXT_COL, 10, 5)
         self.draw_stats(f"LVL: {self.lvl}", self.game.font, TEXT_COL, 120, 5)
         self.draw_stats(f"EXP: {self.exp}", self.game.font, TEXT_COL, 230, 5)
-        self.draw_stats(f"Current elem: {self.curr_element}", self.game.font, TEXT_COL, 320, 5)
+        self.draw_stats(f"Current elem: {self.curr_element}", self.game.font, TEXT_COL, 350, 5)
 
     def draw_stats(self, text, font, text_col, x, y):
         img = font.render(text, True, text_col)
@@ -106,13 +107,13 @@ class Player:
 
     #loops through the list containing amount of points in each element and sets the current element to the element with the most points
     def update_elem(self):
-        nextElem = 0
         for i in range (4):
             if (self.elems_rank[i] > self.curr_max_elem):
-                nextElem = i
+                self.nextElem = i
                 self.curr_max_elem = self.elems_rank[i]
-            #print("value to check is: ", self.elems_rank[i], " and current max is: ", self.curr_max_elem)
-        self.curr_element = self.elem_dict[nextElem]
+            print("value to check is: ", self.elems_rank[i], " and current max is: ", self.curr_max_elem, " : nextElem = ", self.elem_dict[self.nextElem])
+        self.curr_element = self.elem_dict[self.nextElem]
+        print(self.elems_rank)
                     
 
     def update(self):
