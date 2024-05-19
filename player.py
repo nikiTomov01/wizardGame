@@ -20,6 +20,7 @@ class Player:
                                    1 : pygame.image.load("./ui/waterUpCard.png"),
                                    2 : pygame.image.load("./ui/airUpCard.png"),
                                    3 : pygame.image.load("./ui/earthUpCard.png"),}
+        self.elems_rank = {0 : 0, 1 : 0, 2 : 0, 3 : 0}
 
         #stats
         self.hp = 10
@@ -76,6 +77,7 @@ class Player:
         self.draw_stats(f"HP: {self.hp}", self.game.font, TEXT_COL, 10, 5)
         self.draw_stats(f"LVL: {self.lvl}", self.game.font, TEXT_COL, 120, 5)
         self.draw_stats(f"EXP: {self.exp}", self.game.font, TEXT_COL, 230, 5)
+        self.draw_stats(f"Current elem: {self.curr_element}", self.game.font, TEXT_COL, 320, 5)
 
     def draw_stats(self, text, font, text_col, x, y):
         img = font.render(text, True, text_col)
@@ -90,6 +92,15 @@ class Player:
             self.card_list.append(UICard(self.game, 150, 100, self.level_up_card_dict[selected_rand_elem_one], self.elem_dict[selected_rand_elem_one]))
             self.card_list.append(UICard(self.game, 850, 100, self.level_up_card_dict[selected_rand_elem_two], self.elem_dict[selected_rand_elem_two]))
 
+    def update_elem(self):
+        nextElem = 0
+        for i in range (0, 4):
+            for j in range(1, 4):
+                if self.elems_rank[i] > self.elems_rank[j]:
+                    nextElem = i
+        self.curr_element = nextElem
+                    
+
     def update(self):
         self.movement()
         mousePress = pygame.mouse.get_pressed() #gets pressed mouse keys
@@ -102,3 +113,4 @@ class Player:
         if self.exp == 100:
             self.level_up()
             self.leveled_up = True
+        self.update_elem()

@@ -32,12 +32,20 @@ class UICard:
         if action == True:
             if self.cardFunc == "fire":
                 self.game.player.base_dmg += 5
+                self.game.player.elems_rank[0] += 1
+                self.game.player.update_elem()
             if self.cardFunc == "earth":
                 self.game.player.hp += 5
+                self.game.player.elems_rank[3] += 1
+                self.game.player.update_elem()
             if self.cardFunc == "air":
                 self.game.player.attack_speed -= 250
+                self.game.player.elems_rank[2] += 1
+                self.game.player.update_elem()
             if self.cardFunc == "water":
                 self.game.player.ms += 0.01
+                self.game.player.elems_rank[1] += 1
+                self.game.player.update_elem()
 
         return action
         
