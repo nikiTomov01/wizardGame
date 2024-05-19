@@ -96,14 +96,10 @@ class Player:
     def update_elem(self):
         nextElem = 0
         for i in range (4):
-            #for j in range(4):
-                #print(self.elems_rank[i], " : ", self.elems_rank[j])
-                #if self.elems_rank[i] < self.elems_rank[j]:
-                    #nextElem = j
             if (self.elems_rank[i] > self.curr_max_elem):
                 nextElem = i
                 self.curr_max_elem = self.elems_rank[i]
-            print("value to check is: ", self.elems_rank[i], " and current max is: ", self.curr_max_elem)
+            #print("value to check is: ", self.elems_rank[i], " and current max is: ", self.curr_max_elem)
         self.curr_element = self.elem_dict[nextElem]
                     
 
