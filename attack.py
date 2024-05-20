@@ -8,6 +8,7 @@ class Attack(pygame.sprite.Sprite):
         self.pos = (x - 32, y - 32)
         self.attacker = attacker
         self.image = attack_img #pygame.image.load("./character/fireBallPixel.png").convert_alpha()
+        self.image = pygame.transform.scale(self.image, (32, 32))
         self.speed = 5
         self.rect = self.image.get_rect(topleft = self.pos)
 

@@ -22,7 +22,7 @@ class Player:
                                    3 : pygame.image.load("./ui/earthUpCard.png")}
         self.elems_rank = {0 : 0, 1 : 0, 2 : 0, 3 : 0}
         self.attack_image_dict = {"fire": pygame.image.load("./character/fireBallPixel.png"),
-                                  "water": pygame.image.load("./character/fireBallPixel.png"),
+                                  "water": pygame.image.load("./character/waterBallTemp.png"),
                                   "air": pygame.image.load("./character/fireBallPixel.png"),
                                   "earth": pygame.image.load("./character/rockBallPixel.png")}
 
