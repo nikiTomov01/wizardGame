@@ -15,7 +15,7 @@ class Player:
         self.i_frame = pygame.time.get_ticks() #used to give player damage immunity
         self.attack_interval = pygame.time.get_ticks() #used to check time between last attack
         self.attack_speed = 500 #sets the needed amount of time to pass before attacking again
-        self.elem_dict = {0 : "fire", 1 : "water", 2 : "air", 3 : "earth"}
+        #self.elem_dict = GLOBAL_ELEM_DICT
         self.level_up_card_dict = {0 : pygame.image.load("./ui/fireUpCard.png"), 
                                    1 : pygame.image.load("./ui/waterUpCard.png"),
                                    2 : pygame.image.load("./ui/airUpCard.png"),
@@ -36,7 +36,7 @@ class Player:
         self.lvl = 1
         self.exp = 0
         self.leveled_up = False
-        self.curr_element = self.elem_dict[0]
+        self.curr_element = GLOBAL_ELEM_DICT[0]
         self.curr_max_elem = self.elems_rank[0]
         self.nextElem = 0
 
@@ -96,18 +96,14 @@ class Player:
         draw_stats(self, f"EXP: {self.exp}", self.game.font, TEXT_COL, 230, 5)
         draw_stats(self, f"Current elem: {self.curr_element}", self.game.font, TEXT_COL, 350, 5)
 
-    #def draw_stats(self, text, font, text_col, x, y):
-    #    img = font.render(text, True, text_col)
-    #    self.game.screen.blit(img, (x, y))
-
     def level_up(self):
         if self.leveled_up == False:
             self.lvl += 1
             self.card_list.clear()
             selected_rand_elem_one = random.randrange(0, 4)
             selected_rand_elem_two = random.randrange(0, 4)
-            self.card_list.append(UICard(self.game, 150, 100, self.level_up_card_dict[selected_rand_elem_one], self.elem_dict[selected_rand_elem_one]))
-            self.card_list.append(UICard(self.game, 850, 100, self.level_up_card_dict[selected_rand_elem_two], self.elem_dict[selected_rand_elem_two]))
+            self.card_list.append(UICard(self.game, 150, 100, self.level_up_card_dict[selected_rand_elem_one], GLOBAL_ELEM_DICT[selected_rand_elem_one]))
+            self.card_list.append(UICard(self.game, 850, 100, self.level_up_card_dict[selected_rand_elem_two], GLOBAL_ELEM_DICT[selected_rand_elem_two]))
 
     #loops through the list containing amount of points in each element and sets the current element to the element with the most points
     def update_elem(self):
@@ -115,8 +111,8 @@ class Player:
             if (self.elems_rank[i] > self.curr_max_elem):
                 self.nextElem = i
                 self.curr_max_elem = self.elems_rank[i]
-            print("value to check is: ", self.elems_rank[i], " and current max is: ", self.curr_max_elem, " : nextElem = ", self.elem_dict[self.nextElem])
-        self.curr_element = self.elem_dict[self.nextElem]
+            print("value to check is: ", self.elems_rank[i], " and current max is: ", self.curr_max_elem, " : nextElem = ", GLOBAL_ELEM_DICT[self.nextElem])
+        self.curr_element = GLOBAL_ELEM_DICT[self.nextElem]
         print(self.elems_rank)
         print("curr_element: ", self.curr_element)
                     

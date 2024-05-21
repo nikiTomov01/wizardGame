@@ -21,7 +21,8 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft = (self.x, self.y))
         #temp enemy
         self.tempEnemy = pygame.Surface((32, 32)).convert_alpha()
-        self.tempEnemy.fill((0,0,0))
+        #self.tempEnemy.fill((0,0,0))
+        self.elem_pick()
         self.tempRect = self.tempEnemy.get_rect(topleft = (self.x, self.y))
         self.i_frame = pygame.time.get_ticks()
 
@@ -89,6 +90,19 @@ class Enemy(pygame.sprite.Sprite):
         player_pos = (self.game.player.x, self.game.player.y)
         Attack(self.game, self.tempRect.x, self.tempRect.y, player_pos, "enemy", pygame.image.load("./character/fireBallPixel.png"), self.base_dmg, self.attack_group) 
         self.attack_timer = pygame.time.get_ticks()
+
+    def elem_pick(self):
+        random_elem = random.randrange(0, 5)
+        if (random_elem == 0):
+            self.tempEnemy.fill("red")
+        elif(random_elem == 1):
+            self.tempEnemy.fill("blue")
+        elif(random_elem == 2):
+            self.tempEnemy.fill((183, 247, 229))
+        elif(random_elem == 3):
+            self.tempEnemy.fill("brown")
+        else:
+            self.tempEnemy.fill((0, 0, 0))
 
     def update(self):
         # enemy attack speed (currently shots every 1.5 second)
