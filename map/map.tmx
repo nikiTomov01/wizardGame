@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="43" height="24" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="1">
- <tileset firstgid="1" source="C:/Users/theni/Desktop/FieldsTileset.tsx"/>
- <tileset firstgid="65" source="C:/Users/theni/Desktop/props.tsx"/>
+ <tileset firstgid="1" source="../mapStuff/FieldsTileset.tsx"/>
+ <tileset firstgid="65" source="../mapStuff/props.tsx"/>
  <layer id="1" name="ground" width="43" height="24">
   <data encoding="csv">
 38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,38,10,1,28,38,38,38,38,38,38,38,38,38,38,38,38,
