@@ -3,12 +3,25 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "levelTwo.tmx",
     "expandedProjectPaths": [
     ],
     "fileStates": {
         "E:/code/python/wizardGame/mapStuff/FieldsTileset.tsx": {
             "scaleInDock": 1
+        },
+        "levelTwo.tmx": {
+            "scale": 0.75,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 680,
+                "y": 388
+            }
+        },
+        "tileSets/FieldsTileset.tsx": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "tileSets/props.tsx": {
             "dynamicWrapping": true,
@@ -21,10 +34,15 @@
     "map.lastUsedFormat": "tmx",
     "map.width": 43,
     "openFiles": [
+        "levelTwo.tmx",
+        "tileSets/FieldsTileset.tsx",
+        "tileSets/props.tsx"
     ],
     "project": "levelTwo.tiled-project",
     "recentFiles": [
-        "tileSets/props.tsx"
+        "tileSets/props.tsx",
+        "tileSets/FieldsTileset.tsx",
+        "levelTwo.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.type": 1
