@@ -17,13 +17,11 @@ class Enemy(pygame.sprite.Sprite):
         self.turn_y = random.randrange(1, 100)
         self.space_count_x = 0
         self.space_count_y = 0
-        self.image = pygame.image.load("./character/fireBallPixel.png")
-        self.rect = self.image.get_rect(topleft = (self.x, self.y))
-        #temp enemy
-        self.tempEnemy = pygame.Surface((32, 32)).convert_alpha()
-        #self.tempEnemy.fill((0,0,0))
         self.elem_pick()
-        self.tempRect = self.tempEnemy.get_rect(topleft = (self.x, self.y))
+        self.image = pygame.image.load(f"./enemies/{self.elem}/{self.elem}Slime.png")
+        self.image = pygame.transform.scale(self.image, (32, 32))
+        self.rect = self.image.get_rect(topleft = (self.x, self.y))
+        
         self.i_frame = pygame.time.get_ticks()
 
         #stats
@@ -37,42 +35,42 @@ class Enemy(pygame.sprite.Sprite):
         self.attack_timer = pygame.time.get_ticks()
 
     def draw(self):
-        self.game.screen.blit(self.tempEnemy, self.tempRect)
+        self.game.screen.blit(self.image, self.rect)
         self.attack_group.draw(self.game.screen)
-        draw_stats(self, f"HP: {self.hp}", self.game.font, TEXT_COL, self.tempRect.x - 16, self.tempRect.y - 32)
+        draw_stats(self, f"HP: {self.hp}", self.game.font, TEXT_COL, self.rect.x - 16, self.rect.y - 32)
 
     def random_movement(self): #very long probably bad could be done so much better movement but for now it works
         #for x
         self.space_count_x += 1
-        self.tempRect.x += self.direction_x * self.speed
+        self.rect.x += self.direction_x * self.speed
 
         if (self.space_count_x >= self.turn_x):
             self.direction_x *= -1
             self.space_count_x = 0
             self.turn_x = random.randrange(1, 100)
         #change direction for x if hitting screen edge
-        if (self.tempRect.x <= 0): 
+        if (self.rect.x <= 0): 
             self.direction_x = 1  # turn right
             self.space_count_x = 0
             self.turn_x = random.randrange(1, 100)
-        elif (self.tempRect.x >= RES[0] - 32):
+        elif (self.rect.x >= RES[0] - 32):
             self.direction_x = -1
             self.space_count_x = 0
             self.turn_x = random.randrange(1, 100)
 
         #for y
         self.space_count_y += 1
-        self.tempRect.y += self.direction_y * self.speed
+        self.rect.y += self.direction_y * self.speed
 
         if (self.space_count_y >= self.turn_y):
             self.direction_y *= -1
             self.space_count_y = 0
             self.turn_y = random.randrange(1, 100)
-        if (self.tempRect.y <= 0):
+        if (self.rect.y <= 0):
             self.direction_y = 1
             self.space_count_y = 0
             self.turn_y = random.randrange(1, 100)
-        elif (self.tempRect.y >= RES[1] -32):
+        elif (self.rect.y >= RES[1] -32):
             self.direction_y = -1
             self.space_count_y = 0
             self.turn_y = random.randrange(1, 100)
@@ -88,25 +86,25 @@ class Enemy(pygame.sprite.Sprite):
 
     def attack_player(self):
         player_pos = (self.game.player.x, self.game.player.y)
-        Attack(self.game, self.tempRect.x, self.tempRect.y, player_pos, "enemy", pygame.image.load("./character/fireBallPixel.png"), self.base_dmg, self.attack_group) 
+        Attack(self.game, self.rect.x, self.rect.y, player_pos, "enemy", pygame.image.load("./character/fireBallPixel.png"), self.base_dmg, self.attack_group) 
         self.attack_timer = pygame.time.get_ticks()
 
     def elem_pick(self):
         random_elem = random.randrange(0, 5)
         if (random_elem == 0):
-            self.tempEnemy.fill("red")
+            #self.tempEnemy.fill("red")
             self.elem = GLOBAL_ELEM_DICT[random_elem]
         elif(random_elem == 1):
-            self.tempEnemy.fill("blue")
+            #self.tempEnemy.fill("blue")
             self.elem = GLOBAL_ELEM_DICT[random_elem]
         elif(random_elem == 2):
-            self.tempEnemy.fill((183, 247, 229))
+            #self.tempEnemy.fill((183, 247, 229))
             self.elem = GLOBAL_ELEM_DICT[random_elem]
         elif(random_elem == 3):
-            self.tempEnemy.fill((112, 75, 64))
+            #self.tempEnemy.fill((112, 75, 64))
             self.elem = GLOBAL_ELEM_DICT[random_elem]
         else:
-            self.tempEnemy.fill((0, 0, 0))
+            #self.tempEnemy.fill((0, 0, 0))
             self.elem = "normal"
 
     def update(self):
