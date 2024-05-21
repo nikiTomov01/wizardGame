@@ -9,7 +9,7 @@ import random
 class Level:
     def __init__(self, game):
         self.game = game
-        self.tmx_data = load_pygame("./map/map.tmx")
+        self.tmx_data = load_pygame("./map/levelTwo/levelTwo.tmx")
         self.bg_sprite_group = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
         self.populate_sprite_group()
