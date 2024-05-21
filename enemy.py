@@ -18,7 +18,7 @@ class Enemy(pygame.sprite.Sprite):
         self.space_count_x = 0
         self.space_count_y = 0
         self.elem_pick()
-        self.image = pygame.image.load(f"./enemies/{self.elem}/{self.elem}Slime.png")
+        self.image = pygame.image.load(f"./enemies/{self.elem}/{self.elem}Slime.png") #pipes in element of the enemy to get the correct sprite image
         self.image = pygame.transform.scale(self.image, (32, 32))
         self.rect = self.image.get_rect(topleft = (self.x, self.y))
         
