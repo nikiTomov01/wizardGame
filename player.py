@@ -81,9 +81,9 @@ class Player:
 
     def take_damage(self, enemy_dmg):
         if pygame.time.get_ticks() - self.i_frame >= 1000:
-            print("damage taken:", enemy_dmg)
+            #print("damage taken:", enemy_dmg)
             self.hp -= enemy_dmg
-            print("hp left: ", self.hp)
+            #print("hp left: ", self.hp)
             self.i_frame = pygame.time.get_ticks()
 
     def draw(self):

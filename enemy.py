@@ -1,7 +1,7 @@
 import pygame
 import random
 from attack import Attack
-from settings import RES, TEXT_COL
+from settings import RES, TEXT_COL, GLOBAL_ELEM_DICT
 from settings import draw_stats
 
 class Enemy(pygame.sprite.Sprite):
@@ -30,6 +30,7 @@ class Enemy(pygame.sprite.Sprite):
         self.base_dmg = 2
         self.hp = 7
         self.lvl = self.game.player.lvl
+        print(self.elem)
 
         #attack stuff
         self.attack_group = pygame.sprite.Group() # enemy attack sprites
@@ -84,7 +85,6 @@ class Enemy(pygame.sprite.Sprite):
             if self.hp <= 0:
                 self.kill()
                 self.game.player.exp += 20
-            print(self.hp)
 
     def attack_player(self):
         player_pos = (self.game.player.x, self.game.player.y)
@@ -95,14 +95,19 @@ class Enemy(pygame.sprite.Sprite):
         random_elem = random.randrange(0, 5)
         if (random_elem == 0):
             self.tempEnemy.fill("red")
+            self.elem = GLOBAL_ELEM_DICT[random_elem]
         elif(random_elem == 1):
             self.tempEnemy.fill("blue")
+            self.elem = GLOBAL_ELEM_DICT[random_elem]
         elif(random_elem == 2):
             self.tempEnemy.fill((183, 247, 229))
+            self.elem = GLOBAL_ELEM_DICT[random_elem]
         elif(random_elem == 3):
-            self.tempEnemy.fill("brown")
+            self.tempEnemy.fill((112, 75, 64))
+            self.elem = GLOBAL_ELEM_DICT[random_elem]
         else:
             self.tempEnemy.fill((0, 0, 0))
+            self.elem = "normal"
 
     def update(self):
         # enemy attack speed (currently shots every 1.5 second)
