@@ -1,7 +1,8 @@
 import pygame
 import random
 from attack import Attack
-from settings import RES
+from settings import RES, TEXT_COL
+from settings import draw_stats
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, game, x, y, groups):
@@ -36,6 +37,7 @@ class Enemy(pygame.sprite.Sprite):
     def draw(self):
         self.game.screen.blit(self.tempEnemy, self.tempRect)
         self.attack_group.draw(self.game.screen)
+        draw_stats(self, f"HP: {self.hp}", self.game.font, TEXT_COL, self.tempRect.x - 16, self.tempRect.y - 32)
 
     def random_movement(self): #very long probably bad could be done so much better movement but for now it works
         #for x

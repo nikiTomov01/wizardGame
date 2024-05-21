@@ -30,7 +30,7 @@ class Player:
         self.hp = 10
         self.ms = SPEED
         self.element = "fire"
-        self.base_dmg = 10
+        self.base_dmg = 5
 
         #lvl stuff
         self.lvl = 1
@@ -91,14 +91,14 @@ class Player:
         player_rect = self.player_image.get_rect(center = (self.x, self.y))
         self.game.screen.blit(self.player_image, player_rect)
         self.attack_group.draw(self.game.screen)
-        self.draw_stats(f"HP: {self.hp}", self.game.font, TEXT_COL, 10, 5)
-        self.draw_stats(f"LVL: {self.lvl}", self.game.font, TEXT_COL, 120, 5)
-        self.draw_stats(f"EXP: {self.exp}", self.game.font, TEXT_COL, 230, 5)
-        self.draw_stats(f"Current elem: {self.curr_element}", self.game.font, TEXT_COL, 350, 5)
+        draw_stats(self, f"HP: {self.hp}", self.game.font, TEXT_COL, 10, 5)
+        draw_stats(self, f"LVL: {self.lvl}", self.game.font, TEXT_COL, 120, 5)
+        draw_stats(self, f"EXP: {self.exp}", self.game.font, TEXT_COL, 230, 5)
+        draw_stats(self, f"Current elem: {self.curr_element}", self.game.font, TEXT_COL, 350, 5)
 
-    def draw_stats(self, text, font, text_col, x, y):
-        img = font.render(text, True, text_col)
-        self.game.screen.blit(img, (x, y))
+    #def draw_stats(self, text, font, text_col, x, y):
+    #    img = font.render(text, True, text_col)
+    #    self.game.screen.blit(img, (x, y))
 
     def level_up(self):
         if self.leveled_up == False:
