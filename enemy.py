@@ -23,7 +23,7 @@ class Enemy(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft = (self.x, self.y))
         
         self.i_frame = pygame.time.get_ticks()
-
+        
         #stats
         self.base_dmg = 2
         self.hp = 7
