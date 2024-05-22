@@ -15,7 +15,6 @@ class Player:
         self.i_frame = pygame.time.get_ticks() #used to give player damage immunity
         self.attack_interval = pygame.time.get_ticks() #used to check time between last attack
         self.attack_speed = 500 #sets the needed amount of time to pass before attacking again
-        #self.elem_dict = GLOBAL_ELEM_DICT
         self.level_up_card_dict = {0 : pygame.image.load("./ui/fireUpCard.png"), 
                                    1 : pygame.image.load("./ui/waterUpCard.png"),
                                    2 : pygame.image.load("./ui/airUpCard.png"),
@@ -29,7 +28,7 @@ class Player:
         #stats
         self.hp = 10
         self.ms = SPEED
-        self.element = "fire"
+        #self.element = "fire"
         self.base_dmg = 5
 
         #lvl stuff

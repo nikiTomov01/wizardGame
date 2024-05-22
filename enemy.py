@@ -78,6 +78,9 @@ class Enemy(pygame.sprite.Sprite):
     # checks if a specified interval has passed after last dmg check and reduces enemy.hp
     def take_dmg(self, dmg):
         if pygame.time.get_ticks() - self.i_frame >= 1000:
+            #find a way to avoid having to write 12 if checks for elem comparison
+            if (self.game.player.curr_element == "fire" and self.elem == "air"):
+                dmg += 5
             self.hp -= dmg
             self.i_frame = pygame.time.get_ticks()
             if self.hp <= 0:
