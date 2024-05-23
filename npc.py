@@ -1,5 +1,6 @@
 import pygame
 import math
+from settings import draw_text
 
 class NPC():
     def __init__(self, game, x, y, image):
@@ -18,7 +19,8 @@ class NPC():
         intDistance = 128
         keys = pygame.key.get_pressed()
         if math.hypot(self.x - self.game.player.x, self.y - self.game.player.y) < float(intDistance):
-            if keys[pygame.K_e]:
+            draw_text(self, "Press 'E' to spawn a wave of monsters", self.game.font, (255,255,255), self.x - 256, self.y - 32)
+            if keys[pygame.K_e] and not self.game.level.enemy_list:
                 self.game.level.populate_level()
             
 
