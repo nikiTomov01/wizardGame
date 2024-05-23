@@ -90,10 +90,10 @@ class Player:
         player_rect = self.player_image.get_rect(center = (self.x, self.y))
         self.game.screen.blit(self.player_image, player_rect)
         self.attack_group.draw(self.game.screen)
-        draw_stats(self, f"HP: {self.hp}", self.game.font, TEXT_COL, 10, 5)
-        draw_stats(self, f"LVL: {self.lvl}", self.game.font, TEXT_COL, 120, 5)
-        draw_stats(self, f"EXP: {self.exp}", self.game.font, TEXT_COL, 230, 5)
-        draw_stats(self, f"Current elem: {self.curr_element}", self.game.font, TEXT_COL, 350, 5)
+        draw_text(self, f"HP: {self.hp}", self.game.font, TEXT_COL, 10, 5)
+        draw_text(self, f"LVL: {self.lvl}", self.game.font, TEXT_COL, 120, 5)
+        draw_text(self, f"EXP: {self.exp}", self.game.font, TEXT_COL, 230, 5)
+        draw_text(self, f"Current elem: {self.curr_element}", self.game.font, TEXT_COL, 350, 5)
 
     def level_up(self):
         if self.leveled_up == False:

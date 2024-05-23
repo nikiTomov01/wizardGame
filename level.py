@@ -15,7 +15,7 @@ class Level:
         self.populate_sprite_group()
         self.world_shift_x = 0
         self.world_shift_y = 0
-        self.populate_level()
+        #self.populate_level()
 
     def populate_sprite_group(self):
         #cycle through all layers

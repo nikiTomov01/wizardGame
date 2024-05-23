@@ -22,6 +22,7 @@ class Game:
     def update(self):
         self.player.update()
         self.level.update()
+        self.newNpc.update()
         pygame.display.flip()
         self.delta_time = self.clock.tick(FPS)
         pygame.display.set_caption(f'{self.clock.get_fps() :.1f}')
@@ -37,7 +38,7 @@ class Game:
                 if card.draw():
                     self.player.exp = 0
                     self.player.leveled_up = False
-                    self.level.populate_level()
+                    #self.level.populate_level()
         self.newNpc.draw()
         
     def check_events(self):
