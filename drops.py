@@ -1,6 +1,6 @@
 import pygame
 
-class Drops(pygame.sprite.Sprite):
+class Drops(pygame.sprite.Sprite): #the list for drops is in level.py
     def __init__(self, game, x, y, image, groups):
         super().__init__(groups)
         self.game = game
@@ -11,7 +11,7 @@ class Drops(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(topleft = (self.x, self.y))
 
     def check_if_picked_up(self):
-        if self.rect.colliderect(self.game.player.player_rect):
+        if self.rect.colliderect(self.game.player.player_rect): #checks if the player is colliding with the drop and does something
             print("picked up!!!")
 
     def draw(self):

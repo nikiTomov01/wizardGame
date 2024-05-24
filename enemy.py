@@ -29,7 +29,7 @@ class Enemy(pygame.sprite.Sprite):
         self.base_dmg = 2
         self.hp = 7
         self.lvl = self.game.player.lvl
-        print(self.elem)
+        #print(self.elem)
 
         #attack stuff
         self.attack_group = pygame.sprite.Group() # enemy attack sprites
@@ -97,19 +97,14 @@ class Enemy(pygame.sprite.Sprite):
     def elem_pick(self):
         random_elem = random.randrange(0, 5)
         if (random_elem == 0):
-            #self.tempEnemy.fill("red")
             self.elem = GLOBAL_ELEM_DICT[random_elem]
         elif(random_elem == 1):
-            #self.tempEnemy.fill("blue")
             self.elem = GLOBAL_ELEM_DICT[random_elem]
         elif(random_elem == 2):
-            #self.tempEnemy.fill((183, 247, 229))
             self.elem = GLOBAL_ELEM_DICT[random_elem]
         elif(random_elem == 3):
-            #self.tempEnemy.fill((112, 75, 64))
             self.elem = GLOBAL_ELEM_DICT[random_elem]
         else:
-            #self.tempEnemy.fill((0, 0, 0))
             self.elem = "normal"
 
     def update(self):
