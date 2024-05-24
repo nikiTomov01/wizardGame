@@ -31,6 +31,7 @@ class Player:
         self.ms = SPEED
         #self.element = "fire"
         self.base_dmg = 5
+        self.elem_particles = 0
 
         #lvl stuff
         self.lvl = 1
@@ -94,6 +95,7 @@ class Player:
         draw_text(self, f"HP: {self.hp}", self.game.font, TEXT_COL, 10, 5)
         draw_text(self, f"LVL: {self.lvl}", self.game.font, TEXT_COL, 120, 5)
         draw_text(self, f"EXP: {self.exp}", self.game.font, TEXT_COL, 230, 5)
+        draw_text(self, f"Elem particles: {self.elem_particles}", self.game.font, TEXT_COL, 10, 35)
         draw_text(self, f"Current elem: {self.curr_element}", self.game.font, TEXT_COL, 350, 5)
 
     def level_up(self):
