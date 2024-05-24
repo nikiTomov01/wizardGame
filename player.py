@@ -11,6 +11,7 @@ class Player:
         self.y = RES[1] / 2
         self.direction = pygame.math.Vector2(0, 0)
         self.player_image = pygame.image.load("./character/pixelFlameChar.png").convert_alpha()
+        self.player_rect = self.player_image.get_rect(center = (self.x, self.y))
         self.attack_group = pygame.sprite.Group() # attack sprites
         self.i_frame = pygame.time.get_ticks() #used to give player damage immunity
         self.attack_interval = pygame.time.get_ticks() #used to check time between last attack
@@ -45,7 +46,7 @@ class Player:
         
     def movement(self):
         speed = self.ms * self.game.delta_time
-        player_rect = self.player_image.get_rect(center = (self.x, self.y))
+        self.player_rect = self.player_image.get_rect(center = (self.x, self.y))
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
@@ -65,14 +66,14 @@ class Player:
         else:
             self.direction.x = 0
 
-        if player_rect.x <= 0:
+        if self.player_rect.x <= 0:
             self.x = 20
-        elif player_rect.x >= RES[0] - 32:
+        elif self.player_rect.x >= RES[0] - 32:
             self.x = RES[0] - 36
 
-        if player_rect.y <= 0:
+        if self.player_rect.y <= 0:
             self.y = 20
-        elif player_rect.y >= RES[1] - 32:
+        elif self.player_rect.y >= RES[1] - 32:
             self.y = RES[1] - 36
 
     def attack(self):
@@ -87,8 +88,8 @@ class Player:
 
     def draw(self):
         #pygame.draw.rect(self.game.screen, (0, 0, 0), [self.x, self.y, 32, 32])
-        player_rect = self.player_image.get_rect(center = (self.x, self.y))
-        self.game.screen.blit(self.player_image, player_rect)
+        
+        self.game.screen.blit(self.player_image, self.player_rect)
         self.attack_group.draw(self.game.screen)
         draw_text(self, f"HP: {self.hp}", self.game.font, TEXT_COL, 10, 5)
         draw_text(self, f"LVL: {self.lvl}", self.game.font, TEXT_COL, 120, 5)

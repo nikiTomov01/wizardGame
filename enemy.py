@@ -1,6 +1,7 @@
 import pygame
 import random
 from attack import Attack
+from drops import Drops
 from settings import RES, TEXT_COL, GLOBAL_ELEM_DICT
 from settings import draw_text
 
@@ -86,6 +87,7 @@ class Enemy(pygame.sprite.Sprite):
             if self.hp <= 0:
                 self.kill()
                 self.game.player.exp += 20
+                Drops(self.game, self.rect.x, self.rect.y, pygame.image.load("./character/elementalParticles/fireParticle.png"), self.game.level.drops_list)
 
     def attack_player(self):
         player_pos = (self.game.player.x, self.game.player.y)

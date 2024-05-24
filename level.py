@@ -12,6 +12,7 @@ class Level:
         self.tmx_data = load_pygame("./map/levelTwo/levelTwo.tmx")
         self.bg_sprite_group = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
+        self.drops_list = pygame.sprite.Group()
         self.populate_sprite_group()
         self.world_shift_x = 0
         self.world_shift_y = 0
@@ -61,6 +62,8 @@ class Level:
         #self.enemy_list.draw(self.game.screen)
         for enemy in self.enemy_list.sprites():
             enemy.draw()
+        for drop in self.drops_list.sprites():
+            drop.draw()
 
     # used for camera
     def update(self):
@@ -68,4 +71,6 @@ class Level:
             sprite.update(self.world_shift_x, self.world_shift_y)
         for enemy in self.enemy_list.sprites():
             enemy.update()
+        for drop in self.drops_list.sprites():
+            drop.update()
         #self.camera_movement()
