@@ -3,7 +3,7 @@ import sys
 from settings import *
 from player import Player
 from level import Level
-from npc import NPC
+from spawnerNPC import SpawnerNPC
 
 class Game:
     def __init__(self):
@@ -17,7 +17,7 @@ class Game:
     def new_game(self):
         self.player = Player(self)
         self.level = Level(self)
-        self.newNpc = NPC(self, 1125, 380, pygame.image.load("./npc/puk/pukNpc.png"))
+        self.newNpc = SpawnerNPC(self, 1125, 380, pygame.image.load("./npc/puk/pukNpc.png"))
 
     def update(self):
         self.player.update()
