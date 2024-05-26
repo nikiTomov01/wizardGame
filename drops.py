@@ -20,7 +20,6 @@ class Drops(pygame.sprite.Sprite): #the list for drops is in level.py
     def float_anim(self):
         max_up = self.y - 32
         self.rect.y += self.float_dir * self.float_speed
-        print(self.float_dir * self.float_speed)
         if (self.rect.y == max_up):
             self.float_dir = 1
         elif (self.rect.y == self.y):

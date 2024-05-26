@@ -10,13 +10,16 @@ class NPC(ABC):
         self.image = image
         self.image = pygame.transform.scale(self.image, (126, 126))
         self.npcRect = self.image.get_rect(topleft = (self.x, self.y))
+        self.collideRect = pygame.Rect(self.x, self.y, 126, 126)
 
     def draw(self):
         self.game.screen.blit(self.image, self.npcRect)
 
     def check_for_player(self):
         intDistance = 128
-        if math.hypot(self.x - self.game.player.x, self.y - self.game.player.y) < float(intDistance):
+        #if math.hypot(self.x - self.game.player.x, self.y - self.game.player.y) < float(intDistance):
+        #    self.interact()
+        if self.collideRect.colliderect(self.game.player.player_rect):
             self.interact()
             
     @abstractmethod
