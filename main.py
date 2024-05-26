@@ -4,6 +4,7 @@ from settings import *
 from player import Player
 from level import Level
 from spawnerNPC import SpawnerNPC
+from shopNPC import ShopNPC
 
 class Game:
     def __init__(self):
@@ -18,11 +19,13 @@ class Game:
         self.player = Player(self)
         self.level = Level(self)
         self.newNpc = SpawnerNPC(self, 1125, 380, pygame.image.load("./npc/puk/pukNpc.png"))
+        self.shopNpc = ShopNPC(self, (RES[0] / 2) + 100, 10, pygame.image.load("./npc/shop/tempShop.png"))
 
     def update(self):
         self.player.update()
         self.level.update()
         self.newNpc.update()
+        self.shopNpc.update()
         pygame.display.flip()
         self.delta_time = self.clock.tick(FPS)
         pygame.display.set_caption(f'{self.clock.get_fps() :.1f}')
@@ -32,6 +35,7 @@ class Game:
         #draw level first then player
         self.level.draw()
         self.newNpc.draw()
+        self.shopNpc.draw()
         if self.player.hp > 0:
             self.player.draw()
         if self.player.leveled_up == True:

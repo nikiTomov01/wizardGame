@@ -8,9 +8,9 @@ class NPC(ABC):
         self.x = x
         self.y = y
         self.image = image
-        self.image = pygame.transform.scale(self.image, (126, 126))
+        self.image = pygame.transform.scale(self.image, (64, 64))
         self.npcRect = self.image.get_rect(topleft = (self.x, self.y))
-        self.collideRect = pygame.Rect(self.x, self.y, 126, 126)
+        self.collideRect = pygame.Rect(self.x, self.y, 64, 64)
 
     def draw(self):
         self.game.screen.blit(self.image, self.npcRect)
