@@ -82,6 +82,8 @@ class Enemy(pygame.sprite.Sprite):
             #find a way to avoid having to write 12 if checks for elem comparison
             if (self.game.player.curr_element == "fire" and self.elem == "air"):
                 dmg += 5
+            if (self.game.player.curr_element == "water" and self.elem == "fire"):
+                dmg += 5
             self.hp -= dmg
             self.i_frame = pygame.time.get_ticks()
             if self.hp <= 0:
