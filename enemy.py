@@ -84,6 +84,10 @@ class Enemy(pygame.sprite.Sprite):
                 dmg += 5
             if (self.game.player.curr_element == "water" and self.elem == "fire"):
                 dmg += 5
+            if (self.game.player.curr_element == "air" and self.elem == "fire"):
+                dmg -= 3
+            if (self.game.player.curr_element == "earth"):
+                dmg += 3
             self.hp -= dmg
             self.i_frame = pygame.time.get_ticks()
             if self.hp <= 0:
