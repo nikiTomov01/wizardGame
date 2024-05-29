@@ -97,7 +97,7 @@ class Enemy(pygame.sprite.Sprite):
 
     def attack_player(self):
         player_pos = (self.game.player.x, self.game.player.y)
-        Attack(self.game, self.rect.x, self.rect.y, player_pos, "enemy", pygame.image.load("./character/fireBallPixel.png"), self.base_dmg, self.attack_group) 
+        Attack(self.game, self.rect.x, self.rect.y, player_pos, "enemy", pygame.image.load(f"./character/{self.elem}BallPixel.png"), self.base_dmg, self.attack_group) 
         self.attack_timer = pygame.time.get_ticks()
 
     def elem_pick(self):
@@ -111,7 +111,7 @@ class Enemy(pygame.sprite.Sprite):
         elif(random_elem == 3):
             self.elem = GLOBAL_ELEM_DICT[random_elem]
         else:
-            self.elem = "normal"
+            self.elem = "fire"
 
     def update(self):
         # enemy attack speed (currently shots every 1.5 second)

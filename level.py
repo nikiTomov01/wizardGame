@@ -58,8 +58,6 @@ class Level:
 
     def draw(self):
         self.bg_sprite_group.draw(self.game.screen)
-        #uncomment bottom line and remove for loop when a enemy image has been added
-        #self.enemy_list.draw(self.game.screen)
         for enemy in self.enemy_list.sprites():
             enemy.draw()
         for drop in self.drops_list.sprites():

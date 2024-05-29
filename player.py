@@ -21,10 +21,10 @@ class Player:
                                    2 : pygame.image.load("./ui/airUpCard.png"),
                                    3 : pygame.image.load("./ui/earthUpCard.png")}
         self.elems_rank = {0 : 0, 1 : 0, 2 : 0, 3 : 0}
-        self.attack_image_dict = {"fire": pygame.image.load("./character/fireBallPixel.png"),
-                                  "water": pygame.image.load("./character/waterBallTemp.png"),
-                                  "air": pygame.image.load("./character/fireBallPixel.png"),
-                                  "earth": pygame.image.load("./character/rockBallPixel.png")}
+        #self.attack_image_dict = {"fire": pygame.image.load("./character/fireBallPixel.png"),
+        #                          "water": pygame.image.load("./character/waterBallTemp.png"),
+        #                          "air": pygame.image.load("./character/fireBallPixel.png"),
+        #                          "earth": pygame.image.load("./character/rockBallPixel.png")}
 
         #stats
         self.hp = 10
@@ -78,7 +78,7 @@ class Player:
             self.y = RES[1] - 36
 
     def attack(self):
-        Attack(self.game, self.x, self.y, pygame.mouse.get_pos(), "player", self.attack_image_dict[self.curr_element] ,self.base_dmg, self.attack_group)
+        Attack(self.game, self.x, self.y, pygame.mouse.get_pos(), "player", pygame.image.load(f"./character/{self.curr_element}BallPixel.png") ,self.base_dmg, self.attack_group)
 
     def take_damage(self, enemy_dmg):
         if pygame.time.get_ticks() - self.i_frame >= 1000:
