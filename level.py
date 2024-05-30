@@ -65,10 +65,10 @@ class Level:
 
     # used for camera
     def update(self):
-        for sprite in self.bg_sprite_group: #loops through sprites in world tile group and offsets them based on player direction
-            sprite.update(self.world_shift_x, self.world_shift_y)
+        #for sprite in self.bg_sprite_group: #loops through sprites in world tile group and offsets them based on player direction (used with camera_movement)
+        #    sprite.update(self.world_shift_x, self.world_shift_y)
         for enemy in self.enemy_list.sprites():
             enemy.update()
         for drop in self.drops_list.sprites():
             drop.update()
-        #self.camera_movement()
+        self.camera_movement()
