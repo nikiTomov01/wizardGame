@@ -48,25 +48,28 @@ class Player:
         
     def movement(self):
         speed = self.ms * self.game.delta_time
-        self.player_rect = self.player_image.get_rect(center = (self.x, self.y))
+        #self.player_rect = self.player_image.get_rect(center = (self.x, self.y))
 
         keys = pygame.key.get_pressed()
         if keys[pygame.K_w]:
-            self.y -= speed
+            #self.y -= speed
             self.direction.y = -1
         elif keys[pygame.K_s]:
-            self.y += speed
+            #self.y += speed
             self.direction.y = 1
         else:
             self.direction.y = 0
         if keys[pygame.K_d]:
-            self.x += speed
+            #self.x += speed
             self.direction.x = 1
         elif keys[pygame.K_a]:
-            self.x -= speed
+            #self.x -= speed
             self.direction.x = -1
         else:
             self.direction.x = 0
+
+        self.player_rect.x += self.direction.x * speed
+        self.player_rect.y += self.direction.y * speed
 
         for object in self.game.level.collidable_sprite_group.sprites():
             if object.rect.colliderect(self.player_rect):
@@ -77,6 +80,14 @@ class Player:
                 #right
                 if self.player_rect.right >= object.rect.left and self.old_rect.right <= object.old_rect.left:
                     self.player_rect.right = object.rect.left
+
+                #bottom
+                if self.player_rect.bottom >= object.rect.top and self.old_rect.bottom <= object.old_rect.top:
+                    self.player_rect.bottom = object.rect.top
+
+                #top
+                if self.player_rect.top <= object.rect.bottom and self.old_rect.top >= object.old_rect.bottom:
+                    self.player_rect.top = object.rect.bottom
 
         # restricts movement outside of screen for X
         if self.player_rect.x <= 0:
