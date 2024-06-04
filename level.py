@@ -25,7 +25,10 @@ class Level:
             if layer.name == "ground" or layer.name == "stones": # could be done with id but name is easier to read and track
                 for x, y, surf in layer.tiles():
                     pos = (x * 32, y * 32)
-                    Tile(pos = pos, surf = surf, groups = self.bg_sprite_group)
+                    if layer.name == "ground":
+                        Tile(pos = pos, surf = surf, groups = self.bg_sprite_group)
+                    else:
+                        Tile(pos = pos, surf = surf, groups = self.collidable_sprite_group)
             if layer.name == "trees":
                 for x, y, surf in layer.tiles():
                     pos = (x * 32, y * 32 - (77 - 32))         
