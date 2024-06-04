@@ -11,6 +11,7 @@ class Level:
         self.game = game
         self.tmx_data = load_pygame("./map/levelTwo/levelTwo.tmx")
         self.bg_sprite_group = pygame.sprite.Group()
+        self.collidable_sprite_group = pygame.sprite.Group()
         self.enemy_list = pygame.sprite.Group()
         self.drops_list = pygame.sprite.Group()
         self.populate_sprite_group()
@@ -28,7 +29,7 @@ class Level:
             if layer.name == "trees":
                 for x, y, surf in layer.tiles():
                     pos = (x * 32, y * 32 - (77 - 32))         
-                    Tile(pos = pos, surf = surf, groups = self.bg_sprite_group)
+                    Tile(pos = pos, surf = surf, groups = self.collidable_sprite_group)
 
     def spawn_enemy(self):
         rand_pos_x = random.randrange(0, 800)
@@ -58,6 +59,7 @@ class Level:
 
     def draw(self):
         self.bg_sprite_group.draw(self.game.screen)
+        self.collidable_sprite_group.draw(self.game.screen)
         for enemy in self.enemy_list.sprites():
             enemy.draw()
         for drop in self.drops_list.sprites():

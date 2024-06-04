@@ -12,6 +12,7 @@ class Player:
         self.direction = pygame.math.Vector2(0, 0)
         self.player_image = pygame.image.load("./character/pixelFlameChar.png").convert_alpha()
         self.player_rect = self.player_image.get_rect(center = (self.x, self.y))
+        self.old_rect = self.player_rect.copy()
         self.attack_group = pygame.sprite.Group() # attack sprites
         self.i_frame = pygame.time.get_ticks() #used to give player damage immunity
         self.attack_interval = pygame.time.get_ticks() #used to check time between last attack
@@ -67,11 +68,23 @@ class Player:
         else:
             self.direction.x = 0
 
+        for object in self.game.level.collidable_sprite_group.sprites():
+            if object.rect.colliderect(self.player_rect):
+                #left
+                if self.player_rect.left <= object.rect.right and self.old_rect.left >= object.old_rect.right:
+                    self.player_rect.left = object.rect.right
+
+                #right
+                if self.player_rect.right >= object.rect.left and self.old_rect.right <= object.old_rect.left:
+                    self.player_rect.right = object.rect.left
+
+        # restricts movement outside of screen for X
         if self.player_rect.x <= 0:
             self.x = 20
         elif self.player_rect.x >= RES[0] - 32:
             self.x = RES[0] - 36
 
+        # restricts movement outside of screen for Y
         if self.player_rect.y <= 0:
             self.y = 20
         elif self.player_rect.y >= RES[1] - 32:
@@ -120,6 +133,7 @@ class Player:
                     
 
     def update(self):
+        self.old_rect = self.player_rect.copy()
         self.movement()
         mousePress = pygame.mouse.get_pressed() #gets pressed mouse keys
         if mousePress[0] == True: #check if left mouse button is pressed
