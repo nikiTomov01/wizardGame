@@ -96,7 +96,7 @@ class Enemy(pygame.sprite.Sprite):
                 Drops(self.game, self.rect.x, self.rect.y, pygame.image.load("./character/elementalParticles/fireParticle.png"), self.game.level.drops_list)
 
     def attack_player(self):
-        player_pos = (self.game.player.x, self.game.player.y)
+        player_pos = (self.game.player.player_rect.x, self.game.player.player_rect.y)
         Attack(self.game, self.rect.x, self.rect.y, player_pos, "enemy", pygame.image.load(f"./character/{self.elem}BallPixel.png"), self.base_dmg, self.attack_group) 
         self.attack_timer = pygame.time.get_ticks()
 

@@ -91,18 +91,18 @@ class Player:
 
         # restricts movement outside of screen for X
         if self.player_rect.x <= 0:
-            self.x = 20
+            self.player_rect.x = 20
         elif self.player_rect.x >= RES[0] - 32:
-            self.x = RES[0] - 36
+            self.player_rect.x = RES[0] - 36
 
         # restricts movement outside of screen for Y
         if self.player_rect.y <= 0:
-            self.y = 20
+            self.player_rect.y = 20
         elif self.player_rect.y >= RES[1] - 32:
-            self.y = RES[1] - 36
+            self.player_rect.y = RES[1] - 36
 
     def attack(self):
-        Attack(self.game, self.x, self.y, pygame.mouse.get_pos(), "player", pygame.image.load(f"./character/{self.curr_element}BallPixel.png") ,self.base_dmg, self.attack_group)
+        Attack(self.game, self.player_rect.x + 16, self.player_rect.y + 16, pygame.mouse.get_pos(), "player", pygame.image.load(f"./character/{self.curr_element}BallPixel.png") ,self.base_dmg, self.attack_group)
 
     def take_damage(self, enemy_dmg):
         if pygame.time.get_ticks() - self.i_frame >= 1000:
