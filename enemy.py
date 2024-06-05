@@ -22,6 +22,7 @@ class Enemy(pygame.sprite.Sprite):
         self.image = pygame.image.load(f"./enemies/{self.elem}/{self.elem}Slime.png") #pipes in element of the enemy to get the correct sprite image
         self.image = pygame.transform.scale(self.image, (32, 32))
         self.rect = self.image.get_rect(topleft = (self.x, self.y))
+        self.old_rect = self.rect
         
         self.i_frame = pygame.time.get_ticks()
         
@@ -76,6 +77,22 @@ class Enemy(pygame.sprite.Sprite):
             self.space_count_y = 0
             self.turn_y = random.randrange(1, 100)
 
+        #check for collision
+        for obj in self.game.level.collidable_sprite_group.sprites():
+            if obj.rect.colliderect(self.rect):
+                #for X
+                if self.rect.left <= obj.rect.right and self.old_rect.left >= obj.old_rect.left:
+                    self.rect.left = obj.rect.right
+                if self.rect.right >= obj.rect.left and self.old_rect.right <= obj.old_rect.right:
+                    self.rect.right = obj.rect.left
+
+                #for Y
+                if self.rect.bottom >= obj.rect.top and self.old_rect.bottom <= obj.old_rect.top:
+                    self.rect.bottom = obj.rect.top
+                if self.rect.top <= obj.rect.bottom and self.old_rect.top >= obj.old_rect.bottom:
+                    self.rect.top = obj.rect.bttom
+                
+
     # checks if a specified interval has passed after last dmg check and reduces enemy.hp
     def take_dmg(self, dmg):
         if pygame.time.get_ticks() - self.i_frame >= 1000:
@@ -115,6 +132,7 @@ class Enemy(pygame.sprite.Sprite):
 
     def update(self):
         # enemy attack speed (currently shots every 1.5 second)
+        self.old_rect = self.rect
         self.random_movement()
         if pygame.time.get_ticks() - self.attack_timer >= 1500: #attacks player when a specified time interval has passed
             self.attack_player()
