@@ -3,6 +3,7 @@ import random
 from settings import *
 from attack import Attack
 from uiCard import UICard
+from healthBar import HealthBar
 
 class Player:
     def __init__(self, game):
@@ -33,6 +34,7 @@ class Player:
         #self.element = "fire"
         self.base_dmg = 5
         self.elem_particles = 0
+        self.healthBar = HealthBar(self.game, self.player_rect.x, self.player_rect.y, 32, 8, self.hp)
 
         #lvl stuff
         self.lvl = 1
@@ -121,6 +123,7 @@ class Player:
         draw_text(self, f"EXP: {self.exp}", self.game.font, TEXT_COL, 230, 5)
         draw_text(self, f"Elem particles: {self.elem_particles}", self.game.font, TEXT_COL, 10, 35)
         draw_text(self, f"Current elem: {self.curr_element}", self.game.font, TEXT_COL, 350, 5)
+        self.healthBar.draw()
 
     def level_up(self):
         if self.leveled_up == False:
@@ -146,6 +149,7 @@ class Player:
     def update(self):
         self.old_rect = self.player_rect.copy()
         self.movement()
+        self.healthBar.update(self.hp, self.player_rect.x, self.player_rect.y)
         mousePress = pygame.mouse.get_pressed() #gets pressed mouse keys
         if mousePress[0] == True: #check if left mouse button is pressed
             if pygame.time.get_ticks() - self.attack_interval >= self.attack_speed:
