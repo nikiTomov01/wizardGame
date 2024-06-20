@@ -4,6 +4,7 @@ from attack import Attack
 from drops import Drops
 from settings import RES, TEXT_COL, GLOBAL_ELEM_DICT
 from settings import draw_text
+from healthBar import HealthBar
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, game, x, y, groups):
@@ -30,6 +31,7 @@ class Enemy(pygame.sprite.Sprite):
         self.base_dmg = 2
         self.hp = 7
         self.lvl = self.game.player.lvl
+        self.healthBar = HealthBar(self.game, self.rect.x, self.rect.y, 32, 8, self.hp)
         #print(self.elem)
 
         #attack stuff
@@ -39,7 +41,8 @@ class Enemy(pygame.sprite.Sprite):
     def draw(self):
         self.game.screen.blit(self.image, self.rect)
         self.attack_group.draw(self.game.screen)
-        draw_text(self, f"HP: {self.hp}", self.game.font, TEXT_COL, self.rect.x - 16, self.rect.y - 32)
+        #draw_text(self, f"HP: {self.hp}", self.game.font, TEXT_COL, self.rect.x - 16, self.rect.y - 32)
+        self.healthBar.draw()
 
     def random_movement(self): #very long probably bad could be done so much better movement but for now it works
         #for x
@@ -133,6 +136,7 @@ class Enemy(pygame.sprite.Sprite):
     def update(self):
         # enemy attack speed (currently shots every 1.5 second)
         self.old_rect = self.rect
+        self.healthBar.update(self.hp, self.rect.x, self.rect.y)
         self.random_movement()
         if pygame.time.get_ticks() - self.attack_timer >= 1500: #attacks player when a specified time interval has passed
             self.attack_player()
