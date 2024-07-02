@@ -42,10 +42,11 @@ class Attack(pygame.sprite.Sprite):
                     enemy.take_dmg(self.attack_dmg)
         if self.attacker == "enemy":
             if self.rect.colliderect(self.game.player.player_rect):
-                self.game.player.take_damage(self.attack_dmg)
-        for object in self.game.level.collidable_sprite_group.sprites():
-            if object.rect.colliderect(self.rect):
                 self.kill()
+                self.game.player.take_damage(self.attack_dmg)
+        # for object in self.game.level.collidable_sprite_group.sprites():
+        #     if object.rect.colliderect(self.rect):
+        #         self.kill()
 
     def update(self):
         self.pos = (self.pos[0] + self.dir[0] * self.speed, self.pos[1] + self.dir[1] * self.speed)

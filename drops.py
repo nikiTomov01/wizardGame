@@ -15,6 +15,7 @@ class Drops(pygame.sprite.Sprite): #the list for drops is in level.py
     def check_if_picked_up(self):
         if self.rect.colliderect(self.game.player.player_rect): #checks if the player is colliding with the drop and does something
             self.game.player.elem_particles += 1
+            self.game.player.hp += 2
             pygame.sprite.Sprite.kill(self)
 
     def float_anim(self):
