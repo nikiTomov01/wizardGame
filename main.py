@@ -19,13 +19,23 @@ class Game:
         self.player = Player(self)
         self.level = Level(self)
         self.newNpc = SpawnerNPC(self, 1125, 380, pygame.image.load("./npc/puk/pukNpc.png"))
-        self.shopNpc = ShopNPC(self, (RES[0] / 2) + 100, 10, pygame.image.load("./npc/shop/tempShop.png"))
+        # self.shopNpc = ShopNPC(self, (RES[0] / 2) + 100, 10, pygame.image.load("./npc/shop/tempShop.png"))
 
     def update(self):
-        self.player.update()
+        if self.player.hp > 0:
+            self.player.update()
+        else:
+            self.font = pygame.font.SysFont("arialblack", 40)
+            draw_text_main(self, f"To restart the game press R.", self.font, TEXT_COL, RES[0] / 2 - 350, RES[1] / 2)
+            deadKeys = pygame.key.get_pressed()
+            if deadKeys[pygame.K_r]:
+                self.player.hp = 10
+                self.level.enemy_list.empty()
+                self.level.drops_list.empty()
+                self.font = pygame.font.SysFont("arialblack", 20)
         self.level.update()
         self.newNpc.update()
-        self.shopNpc.update()
+        # self.shopNpc.update()
         pygame.display.flip()
         self.delta_time = self.clock.tick(FPS)
         pygame.display.set_caption(f'{self.clock.get_fps() :.1f}')
@@ -35,7 +45,7 @@ class Game:
         #draw level first then player
         self.level.draw()
         self.newNpc.draw()
-        self.shopNpc.draw()
+        # self.shopNpc.draw()
         if self.player.hp > 0:
             self.player.draw()
         if self.player.leveled_up == True:

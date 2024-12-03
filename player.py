@@ -107,7 +107,7 @@ class Player:
         Attack(self.game, self.player_rect.x + 16, self.player_rect.y + 16, pygame.mouse.get_pos(), "player", pygame.image.load(f"./character/{self.curr_element}BallPixel.png") ,self.base_dmg, self.attack_group)
 
     def take_damage(self, enemy_dmg):
-        if pygame.time.get_ticks() - self.i_frame >= 1000:
+        if pygame.time.get_ticks() - self.i_frame >= 10:
             #print("damage taken:", enemy_dmg)
             self.hp -= enemy_dmg
             #print("hp left: ", self.hp)

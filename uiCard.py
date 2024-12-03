@@ -18,7 +18,7 @@ class UICard:
         #get mouse position 
         pos = pygame.mouse.get_pos()
 
-        if self.rect.collidepoint(pos):
+        if self.rect.collidepoint(pos): # check if mouse pos is on card.
             if pygame.mouse.get_pressed()[2] == 1 and self.clicked == False:
                 self.clicked = True
                 action = True
